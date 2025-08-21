@@ -16,13 +16,13 @@ LibraTrack is a PHP-based platform designed to help schools manage library opera
 
 | Page              | Screenshot |
 |-------------------|------------|
-| **Home**          | ![Home](assets/screenshots/index-1.png) |
-| **Home (Alt)**    | ![Home 2](assets/screenshots/index-2.png) |
-| **Home (Alt 3)**  | ![Home 3](assets/screenshots/index-3.png) |
-| **Books Page**    | ![Books](assets/screenshots/index-4.png) |
-| **Another Page**  | ![Page](assets/screenshots/index-5.png) |
-| **Register**      | ![Register](assets/screenshots/register.png) |
-| **Login**         | ![Login](assets/screenshots/login.png) |
-| **Forgot Password** | ![Forgot](assets/screenshots/forgot-pass.png) |
-![Alt text](https://user-images.githubusercontent.com/12345678/your-uploaded-image.png)
+| **Home**          | ![Home](screenshots/index-1.png) |
+| **Home (Alt)**    | ![Home 2](screenshots/index-2.png) |
+| **Home (Alt 3)**  | ![Home 3](screenshots/index-3.png) |
+| **Books Page**    | ![Books](screenshots/index-4.png) |
+| **Another Page**  | ![Page](screenshots/index-5.png) |
+| **Register**      | ![Register](screenshots/register.png) |
+| **Login**         | ![Login](screenshots/login.png) |
+| **Forgot Password** | ![Forgot](screenshots/forgot-pass.png) |
+
 
