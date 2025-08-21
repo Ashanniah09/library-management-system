@@ -15,11 +15,14 @@ Group Members:
 Grachelle Mae A. Carmelotes and Edmar Angelo S. Generoso
 
 Screenshots:
-screenshots/index-1.png
-screenshots/index-2.png
-screenshots/index-3.png
-screenshots/index-4.png
-screenshots/index-5.png
-screenshots/register.png
-screenshots/login.png
-screenshots/forgot.png
+assets/screenshots/index-1.png
+assets/screenshots/index-2.png
+assets/screenshots/index-3.png
+assets/screenshots/index-4.png
+assets/screenshots/index-5.png
+assets/screenshots/register.png
+assets/screenshots/login.png
+assets/screenshots/forgot.png
+
+Live Demo URL:
+https://ashanniah09.github.io/library-management-system/
