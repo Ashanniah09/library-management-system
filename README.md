@@ -24,3 +24,5 @@ LibraTrack is a PHP-based platform designed to help schools manage library opera
 | **Register**      | ![Register](assets/screenshots/register.png) |
 | **Login**         | ![Login](assets/screenshots/login.png) |
 | **Forgot Password** | ![Forgot](assets/screenshots/forgot-pass.png) |
+![Alt text](https://user-images.githubusercontent.com/12345678/your-uploaded-image.png)
+
