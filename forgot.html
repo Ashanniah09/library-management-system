@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LibraTrack — Forgot Password</title>
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <!-- ======= Header (same as index) ======= -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/library/LibraTrack-logo.png" alt="LibraTrack Logo" style="width:45px; height:100px;">
+        <h1 class="sitename" style="font-size: 24px;">LibraTrack</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted d-none d-sm-block" href="index.html#menu">Browse Catalog</a>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Forgot Password Section ======= -->
+  <section class="page-bg min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="forgot-card border-0 shadow-sm mx-auto" style="max-width: 400px;">
+      <div class="card-body p-5">
+        <div class="text-center mb-4">
+          <img src="./assets/img/library/LibraTrack-logo.png" alt="LibraTrack Logo" width="80" height="80">
+        </div>
+        <h3 class="form-big-label">Forgot Password</h3>
+        <p class="form-label-login-register">Enter your email address and we'll send you instructions to reset your password.</p>
+        
+        <form id="forgotForm" novalidate>
+          <div class="mb-3">
+            <label for="email" class="form-label-login-register">Email</label>
+            <input type="email" id="email" class="form-control" required />
+            <div class="invalid-feedback" id="emailError"></div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 form-button-label">Reset</button>
+        </form>
+
+        <div class="text-center mt-4">
+          <a href="login.html" class="form-label-create">Back to Login</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Validation Script -->
+  <script>
+    document.getElementById('forgotForm').addEventListener('submit', function (e) {
+      const email = document.getElementById('email');
+      const emailError = document.getElementById('emailError');
+      let valid = true;
+
+      if (!email.value.trim()) {
+        email.classList.add('is-invalid');
+        emailError.textContent = 'Email address is required';
+        valid = false;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        email.classList.add('is-invalid');
+        emailError.textContent = 'Please enter a valid email address';
+        valid = false;
+      } else {
+        email.classList.remove('is-invalid');
+        emailError.textContent = '';
+      }
+
+      if (!valid) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+
+    // Remove error when typing
+    document.getElementById('email').addEventListener('input', function () {
+      this.classList.remove('is-invalid');
+      document.getElementById('emailError').textContent = '';
+    });
+  </script>
+</body>
+</html>
