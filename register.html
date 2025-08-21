@@ -1,36 +1,35 @@
-register
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LibraTrack — Register</title>
 
-  <!-- Fonts (optional, matches site) -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap 5 -->
+  <!-- Bootstrap 5 + Icons -->
   <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
-  <!-- Site CSS (keep if you have it) -->
+
+  <!-- Site CSS -->
   <link rel="stylesheet" href="assets/css/main.css" />
- 
-    <!-- ======= Header (same as index) ======= -->
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container position-relative d-flex align-items-center justify-content-between">
-
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
         <img src="assets/img/library/LibraTrack-logo.png" alt="LibraTrack Logo" style="width:45px; height:100px;">
-        <h1 class="sitename" style="font-size: 24px;">LibraTrack</h1>
+        <h1 class="sitename ms-2" style="font-size: 24px;">LibraTrack</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html#hero">Home</a></li>
           <li><a href="index.html#about">About</a></li>
-          <li><a href="register.html">Register</a></li>
-          <li><a href="login.html" class="active">Login</a></li>
+          <li><a href="register.html" class="active">Register</a></li>
+          <li><a href="login.html">Login</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -41,108 +40,165 @@ register
   </header>
   <!-- End Header -->
 
-  <!-- Fullscreen Center -->
-  <section class="page-bg min-vh-100 d-flex align-items-center justify-content-center">
-    <div class="card register-card border-0 shadow-sm mx-auto">
-      <div class="card-body p-5">
+  <!-- ======= Main ======= -->
+  <main class="flex-grow-1">
+    <section class="page-bg d-flex align-items-center justify-content-center py-5">
+      <div class="card register-card border-0 shadow-sm mx-auto" style="max-width: 780px; width: 100%;">
+        <div class="card-body p-5">
+          <!-- Logo -->
+          <div class="text-center mb-4">
+            <img src="assets/img/library/LibraTrack-logo.png" alt="LibraTrack Logo" width="88" height="88">
+          </div>
 
-        <!-- Logo -->
-        <div class="text-center mb-4">
-          <img src="assets/img/library/LibraTrack-logo.png" alt="LibraTrack Logo" width="88" height="88">
+          <h3 class="form-big-label text-center mb-4">Create your account</h3>
+
+          <!-- Register Form -->
+          <form id="registerForm" novalidate>
+            <div class="row mb-3 g-3">
+              <div class="col-md-5">
+                <label for="firstName" class="form-label-login-register">First Name</label>
+                <input type="text" class="form-control" id="firstName"/>
+                <div class="invalid-feedback" id="firstNameError"></div>
+              </div>
+
+              <div class="col-md-5">
+                <label for="lastName" class="form-label-login-register">Last Name</label>
+                <input type="text" class="form-control" id="lastName"/>
+                <div class="invalid-feedback" id="lastNameError"></div>
+              </div>
+
+              <div class="col-md-2">
+                <label for="suffix" class="form-label-login-register">Suffix</label>
+                <select class="form-select form-select-dropdown" id="suffix" required>
+                  <option value="">Select</option>
+                  <option>N/A</option>
+                  <option>Jr.</option>
+                  <option>Sr.</option>
+                  <option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option>
+                  <option>VI</option><option>VII</option><option>VIII</option><option>IX</option><option>X</option>
+                  <option>MD</option><option>PhD</option><option>Esq.</option><option>CPA</option>
+                </select>
+                <div class="invalid-feedback" id="suffixError"></div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="middleName" class="form-label-login-register">Middle Name (optional)</label>
+              <input type="text" class="form-control" id="middleName"/>
+              <div class="invalid-feedback" id="middleNameError"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label-login-register">Email</label>
+              <input type="email" class="form-control" id="email"/>
+              <div class="invalid-feedback" id="emailError"></div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label-login-register">Password</label>
+              <div class="password-wrapper position-relative">
+                <input type="password" class="form-control" id="password" required />
+                <div class="invalid-feedback" id="passwordError"></div>
+
+                <span id="togglePassword"
+                      class="position-absolute top-50 end-0 translate-middle-y me-3"
+                      style="cursor:pointer;">
+                  <i class="bi bi-eye" id="eyeIconPassword" aria-hidden="true"></i>
+                  <span class="visually-hidden">Show/Hide password</span>
+                </span>
+              </div>
+              <small class="text-secondary d-block mt-1" style="color:#9c9c9c !important;"></small>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-4">
+              <label for="confirmPassword" class="form-label-login-register">Confirm Password</label>
+              <div class="password-wrapper position-relative">
+                <input type="password" class="form-control" id="confirmPassword" required />
+                <div class="invalid-feedback" id="confirmPasswordError"></div>
+
+                <span id="toggleConfirmPassword"
+                      class="position-absolute top-50 end-0 translate-middle-y me-3"
+                      style="cursor:pointer;">
+                  <i class="bi bi-eye" id="eyeIconConfirm" aria-hidden="true"></i>
+                  <span class="visually-hidden">Show/Hide confirm password</span>
+                </span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary rounded-pill py-2 form-button-label w-100">
+              Register
+            </button>
+          </form>
+
+          <div class="text-center mt-4">
+            <a href="login.html" class="form-label-create">Already have an account? Login</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- End Main -->
+
+  <!-- ======= Footer (same as index) ======= -->
+  <footer id="footer" class="footer mt-auto">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">LibraTrack</span>
+          </a>
+          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <div class="social-links d-flex mt-4">
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
         </div>
 
-        <!-- Heading -->
-        <h3 class="form-big-label">Create your account</h3>
-
-        <!-- Register Form -->
-        <form id="registerForm" novalidate>
-          <div class="row mb-3 g-3">
-            <div class="col-md-5">
-              <label for="firstName" class="form-label-login-register">First Name</label>
-              <input type="text" class="form-control" id="firstName"/>
-              <div class="invalid-feedback" id="firstNameError"></div>
-            </div>
-
-            <div class="col-md-5">
-              <label for="lastName" class="form-label-login-register">Last Name</label>
-              <input type="text" class="form-control" id="lastName"/>
-              <div class="invalid-feedback" id="lastNameError"></div>
-            </div>
-
-            <div class="col-md-2">
-              <label for="suffix" class="form-label-login-register">Suffix</label>
-              <select class="form-select form-select-dropdown" id="suffix" required>
-                <option value="">Select</option>
-                <option>N/A</option>
-                <option>Jr.</option>
-                <option>Sr.</option>
-                <option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option>
-                <option>VI</option><option>VII</option><option>VIII</option><option>IX</option><option>X</option>
-                <option>MD</option><option>PhD</option><option>Esq.</option><option>CPA</option>
-              </select>
-              <div class="invalid-feedback" id="suffixError"></div>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="middleName" class="form-label-login-register">Middle Name (optional)</label>
-            <input type="text" class="form-control" id="middleName"/>
-            <div class="invalid-feedback" id="middleNameError"></div>
-          </div>
-
-          <div class="mb-3">
-            <label for="email" class="form-label-login-register">Email</label>
-            <input type="email" class="form-control" id="email"/>
-            <div class="invalid-feedback" id="emailError"></div>
-          </div>
-
-          <!-- Password -->
-          <div class="mb-3">
-            <label for="password" class="form-label-login-register">Password</label>
-            <div class="password-wrapper position-relative">
-              <input type="password" class="form-control" id="password" required />
-              <div class="invalid-feedback" id="passwordError"></div>
-
-              <span id="togglePassword"
-                    class="position-absolute top-50 end-0 translate-middle-y me-3"
-                    style="cursor:pointer;">
-                <i class="bi bi-eye" id="eyeIconPassword" aria-hidden="true"></i>
-                <span class="visually-hidden">Show/Hide password</span>
-              </span>
-            </div>
-            <small class="text-secondary d-block mt-1" style="color:#9c9c9c !important;">
-            </small>
-          </div>
-
-          <!-- Confirm Password -->
-          <div class="mb-4">
-            <label for="confirmPassword" class="form-label-login-register">Confirm Password</label>
-            <div class="password-wrapper position-relative">
-              <input type="password" class="form-control" id="confirmPassword" required />
-              <div class="invalid-feedback" id="confirmPasswordError"></div>
-
-              <span id="toggleConfirmPassword"
-                    class="position-absolute top-50 end-0 translate-middle-y me-3"
-                    style="cursor:pointer;">
-                <i class="bi bi-eye" id="eyeIconConfirm" aria-hidden="true"></i>
-                <span class="visually-hidden">Show/Hide confirm password</span>
-              </span>
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary rounded-pill py-2 form-button-label">
-            Register
-          </button>
-        </form>
-
-        <!-- Footer -->
-        <div class="text-center mt-4">
-          <a href="login.html" class="form-label-create">Already have an account? Login</a>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#about">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
         </div>
 
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>A108 Adam Street</p>
+          <p>New York, NY 535022</p>
+          <p>United States</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@example.com</span></p>
+        </div>
       </div>
     </div>
-  </section>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span id="year"></span> <strong class="px-1 sitename">LibraTrack</strong> — All Rights Reserved</p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
 
   <!-- Bootstrap Bundle -->
   <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -175,9 +231,9 @@ register
       const onlyLetters = /^[A-Za-z]+$/;
       const onlyNumbers = /^[0-9]+$/;
 
-      // NOTE: This email rule forces exactly "example@gmail.com" (matches your previous logic).
-      // If you want any valid email, replace with:  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const emailPattern = /^example@gmail\.com$/;
+      // If you want any valid email, use the line below and remove the next one
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // const emailPattern = /^example@gmail\.com$/; // (your previous strict rule)
 
       const hasUppercase = /[A-Z]/;
       const hasSpecial = /[^A-Za-z0-9]/;
@@ -313,6 +369,9 @@ register
         el.addEventListener('input', () => el.classList.remove('is-invalid'));
       });
     })();
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
