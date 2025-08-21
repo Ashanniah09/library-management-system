@@ -25,4 +25,5 @@ LibraTrack is a PHP-based platform designed to help schools manage library opera
 | **Login**         | ![Login](screenshots/login.png) |
 | **Forgot Password** | ![Forgot](screenshots/forgot-pass.png) |
 
-
+## Live Demo URL
+https://ashanniah09.github.io/library-management-system/
