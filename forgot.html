@@ -4,20 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LibraTrack — Forgot Password</title>
-  <!-- Bootstrap 5 CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicons (optional: mirror index if you use them there) -->
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+
+  <!-- Fonts (same as index) -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS (same local files as index) -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Site CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
 </head>
-<body>
-  <!-- ======= Header (same as index) ======= -->
+
+<body class="index-page d-flex flex-column min-vh-100">
+
+  <!-- ======= Header (EXACT match to index) ======= -->
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container position-relative d-flex align-items-center justify-content-between">
+
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/library/LibraTrack-logo.png" alt="LibraTrack Logo" style="width:45px; height:100px;">
+        <!-- <img src="assets/img/logo.webp" alt=""> -->
+        <img src="assets/img/LibraTrack-logo.png" alt="LibraTrack Logo" style="width:45px; height:100px;">
         <h1 class="sitename" style="font-size: 24px;">LibraTrack</h1>
       </a>
 
@@ -27,6 +44,28 @@
           <li><a href="index.html#about">About</a></li>
           <li><a href="register.html">Register</a></li>
           <li><a href="login.html">Login</a></li>
+
+          <!-- Keep dropdown to mirror index exactly -->
+          <li class="dropdown">
+            <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown">
+                <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -37,34 +76,40 @@
   </header>
   <!-- End Header -->
 
-  <!-- ======= Forgot Password Section ======= -->
-  <section class="page-bg min-vh-100 d-flex align-items-center justify-content-center">
-    <div class="forgot-card border-0 shadow-sm mx-auto" style="max-width: 400px;">
-      <div class="card-body p-5">
-        <div class="text-center mb-4">
-          <img src="./assets/img/library/LibraTrack-logo.png" alt="LibraTrack Logo" width="80" height="80">
-        </div>
-        <h3 class="form-big-label">Forgot Password</h3>
-        <p class="form-label-login-register">Enter your email address and we'll send you instructions to reset your password.</p>
-        
-        <form id="forgotForm" novalidate>
-          <div class="mb-3">
-            <label for="email" class="form-label-login-register">Email</label>
-            <input type="email" id="email" class="form-control" required />
-            <div class="invalid-feedback" id="emailError"></div>
+  <!-- ======= Main ======= -->
+  <main class="main flex-grow-1">
+    <!-- Forgot Password Section -->
+    <section class="page-bg min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="forgot-card border-0 shadow-sm mx-auto" style="max-width: 420px; width: 100%;">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <img src="assets/img/LibraTrack-logo.png" alt="LibraTrack Logo" width="84" height="84">
           </div>
-          <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 form-button-label">Reset</button>
-        </form>
+          <h3 class="form-big-label text-center mb-2">Forgot Password</h3>
+          <p class="form-label-login-register text-center mb-4">
+            Enter your email address and we'll send you instructions to reset your password.
+          </p>
 
-        <div class="text-center mt-4">
-          <a href="login.html" class="form-label-create">Back to Login</a>
+          <form id="forgotForm" novalidate>
+            <div class="mb-3">
+              <label for="email" class="form-label-login-register">Email</label>
+              <input type="email" id="email" class="form-control" required />
+              <div class="invalid-feedback" id="emailError"></div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 form-button-label">Reset</button>
+          </form>
+
+          <div class="text-center mt-4">
+            <a href="login.html" class="form-label-create">Back to Login</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
+  <!-- End Main -->
 
-  <!-- ======= Footer (same as register) ======= -->
-  <footer id="footer" class="footer">
+  <!-- ======= Footer (same as index/register) ======= -->
+  <footer id="footer" class="footer mt-auto">
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-about">
@@ -122,10 +167,23 @@
   </footer>
   <!-- End Footer -->
 
-  <!-- Bootstrap JS -->
-  <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
 
-  <!-- Validation Script -->
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS (same local files as index) -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Site JS -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- Page JS: simple validation -->
   <script>
     document.getElementById('forgotForm').addEventListener('submit', function (e) {
       const email = document.getElementById('email');
@@ -136,7 +194,7 @@
         email.classList.add('is-invalid');
         emailError.textContent = 'Email address is required';
         valid = false;
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+      } else if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.value.trim())) {
         email.classList.add('is-invalid');
         emailError.textContent = 'Please enter a valid email address';
         valid = false;
@@ -151,7 +209,6 @@
       }
     });
 
-    // Remove error when typing
     document.getElementById('email').addEventListener('input', function () {
       this.classList.remove('is-invalid');
       document.getElementById('emailError').textContent = '';
