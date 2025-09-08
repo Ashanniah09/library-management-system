@@ -68,7 +68,7 @@ body {
 }
 
 body::before {
-  background: linear-gradient(color-mix(in srgb, #000000, transparent 30%), color-mix(in srgb, #000000, transparent 30%)), url("../img/bg/abstract-bg-4.webp") no-repeat center center/cover;
+  background: linear-gradient(color-mix(in srgb, #000000, transparent 30%), color-mix(in srgb, #000000, transparent 30%)), url("../img/abstract-bg-4.webp") center center / cover no-repeat fixed !important;
   content: "";
   position: fixed;
   inset: 0;
@@ -726,12 +726,20 @@ section,
   }
 }
 
+.section-divider {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2); 
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 30px;
+}
+
 /*--------------------------------------------------------------
 # Global Section Titles
 --------------------------------------------------------------*/
 .section-title {
   text-align: center;
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   position: relative;
 }
 
@@ -761,7 +769,6 @@ section,
 .section-title p {
   margin-bottom: 0;
 }
-
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
@@ -1088,10 +1095,11 @@ section,
   margin-bottom: 5px;
 }
 
-.about .about-content .chef-signature .chef-name {
+.about .about-content .proj-manager-name {
   margin: 0;
   font-weight: 600;
   font-size: 14px;
+  font-style: italic;
   color: color-mix(in srgb, var(--heading-color), transparent 15%);
 }
 
@@ -1150,10 +1158,6 @@ section,
     top: -10px;
     left: -10px;
   }
-}
-
-.about .features-section {
-  border-top: 1px solid color-mix(in srgb, var(--heading-color), transparent 80%);
 }
 
 .about .features-section .feature-box {
@@ -2696,11 +2700,6 @@ section,
 	box-sizing: border-box;
 }
 
-body, html {
-	height: 100%;
-	font-family: Raleway-Regular, sans-serif;
-}
-
 /*---------------------------------------------*/
 a {
 	font-family: Raleway-Regular;
@@ -3284,7 +3283,7 @@ body {
   margin-bottom: 20px; 
   font-size: 12px;
   color: #555;
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", var(--default-font), sans-serif;
   font-weight: 300;
 }
 /* System features heading */
@@ -3327,14 +3326,14 @@ body {
 
 html, body {
   height: 100%;
-  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--default-font);
   background: var(--bg-body);
   color: var(--text);
 }
 
 .page-bg {
-  background: var(--bg-body);
-  padding: 40px 16px;
+  background: transparent !important;
+  padding: 40px 16px;  
 }
 
 .register-card {
@@ -3421,3 +3420,24 @@ html, body {
   object-fit: contain;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,.3));
 }
+/* Success Modal Custom Styles */
+.success-modal {
+  border-radius: 12px;
+  color: #000; 
+}
+
+.success-icon {
+  font-size: 80px;   
+  color: #28a745;    
+}
+
+.success-modal h5,
+.success-modal p {
+  color: #000 !important; 
+}
+
+/* Equal button sizes */
+.success-modal .btn {
+  flex: 1;
+}
+
