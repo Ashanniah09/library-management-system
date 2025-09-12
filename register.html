@@ -5,23 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LibraTrack — Register</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicons -->
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
 
-  <!-- Bootstrap 5 + Icons -->
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Site CSS -->
   <link rel="stylesheet" href="assets/css/main.css" />
 </head>
-<body class="d-flex flex-column min-vh-100">
-  <!-- ======= Header ======= -->
+
+<body class="index-page d-flex flex-column min-vh-100">
+  <!-- Header -->
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container position-relative d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/library/LibraTrack-logo.png" alt="LibraTrack Logo" style="width:45px; height:100px;">
-        <h1 class="sitename ms-2" style="font-size: 24px;">LibraTrack</h1>
+        <img src="assets/img/LibraTrack-logo.png" alt="LibraTrack Logo" style="width:45px; height:100px;">
+        <h1 class="sitename" style="font-size: 24px;">LibraTrack</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -30,6 +41,25 @@
           <li><a href="index.html#about">About</a></li>
           <li><a href="register.html" class="active">Register</a></li>
           <li><a href="login.html">Login</a></li>
+          <li class="dropdown">
+            <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown">
+                <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -38,21 +68,18 @@
       <a class="btn-getstarted d-none d-sm-block" href="index.html#menu">Browse Catalog</a>
     </div>
   </header>
-  <!-- End Header -->
 
-  <!-- ======= Main ======= -->
-  <main class="flex-grow-1">
+  <!-- Main -->
+  <main class="main flex-grow-1">
     <section class="page-bg d-flex align-items-center justify-content-center py-5">
       <div class="card register-card border-0 shadow-sm mx-auto" style="max-width: 780px; width: 100%;">
         <div class="card-body p-5">
-          <!-- Logo -->
           <div class="text-center mb-4">
-            <img src="assets/img/library/LibraTrack-logo.png" alt="LibraTrack Logo" width="88" height="88">
+            <img src="assets/img/LibraTrack-logo.png" alt="LibraTrack Logo" width="88" height="88">
           </div>
 
           <h3 class="form-big-label text-center mb-4">Create your account</h3>
 
-          <!-- Register Form -->
           <form id="registerForm" novalidate>
             <div class="row mb-3 g-3">
               <div class="col-md-5">
@@ -94,16 +121,12 @@
               <div class="invalid-feedback" id="emailError"></div>
             </div>
 
-            <!-- Password -->
             <div class="mb-3">
               <label for="password" class="form-label-login-register">Password</label>
               <div class="password-wrapper position-relative">
                 <input type="password" class="form-control" id="password" required />
                 <div class="invalid-feedback" id="passwordError"></div>
-
-                <span id="togglePassword"
-                      class="position-absolute top-50 end-0 translate-middle-y me-3"
-                      style="cursor:pointer;">
+                <span id="togglePassword" class="position-absolute top-50 end-0 translate-middle-y me-3" style="cursor:pointer;">
                   <i class="bi bi-eye" id="eyeIconPassword" aria-hidden="true"></i>
                   <span class="visually-hidden">Show/Hide password</span>
                 </span>
@@ -111,24 +134,21 @@
               <small class="text-secondary d-block mt-1" style="color:#9c9c9c !important;"></small>
             </div>
 
-            <!-- Confirm Password -->
             <div class="mb-4">
               <label for="confirmPassword" class="form-label-login-register">Confirm Password</label>
               <div class="password-wrapper position-relative">
                 <input type="password" class="form-control" id="confirmPassword" required />
                 <div class="invalid-feedback" id="confirmPasswordError"></div>
-
-                <span id="toggleConfirmPassword"
-                      class="position-absolute top-50 end-0 translate-middle-y me-3"
-                      style="cursor:pointer;">
+                <span id="toggleConfirmPassword" class="position-absolute top-50 end-0 translate-middle-y me-3" style="cursor:pointer;">
                   <i class="bi bi-eye" id="eyeIconConfirm" aria-hidden="true"></i>
                   <span class="visually-hidden">Show/Hide confirm password</span>
                 </span>
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary rounded-pill py-2 form-button-label w-100">
-              Register
+            <button id="submitBtn" type="submit" class="btn btn-primary rounded-pill py-2 form-button-label w-100">
+              <span class="btn-text">Register</span>
+              <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
             </button>
           </form>
 
@@ -139,9 +159,8 @@
       </div>
     </section>
   </main>
-  <!-- End Main -->
 
-  <!-- ======= Footer (same as index) ======= -->
+  <!-- Footer -->
   <footer id="footer" class="footer mt-auto">
     <div class="container footer-top">
       <div class="row gy-4">
@@ -198,179 +217,191 @@
       </div>
     </div>
   </footer>
-  <!-- End Footer -->
 
-  <!-- Bootstrap Bundle -->
-  <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
 
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Success Modal -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content success-modal text-center p-4">
+        <div class="success-icon">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h5 class="modal-title">Registration Successful</h5>
+        <p id="successMsg">Your account has been created.</p>
+        <div class="d-flex justify-content-center gap-2 mt-3">
+          <button type="button" class="btn btn-outline-secondary w-50" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button id="goLoginBtn" type="button" class="btn btn-primary w-50">
+            Go to Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor JS -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Site JS -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- Page JS -->
   <script>
-    // Validation & interactions
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
-      let valid = true;
+    // ---------- helpers ----------
+    const setErr = (id, msg) => {
+      const inp = document.getElementById(id);
+      const err = document.getElementById(id + 'Error');
+      inp?.classList.add('is-invalid');
+      if (err) err.textContent = msg;
+    };
+    const clearErrs = () => {
+      document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+      document.querySelectorAll('.invalid-feedback').forEach(el => el.textContent = '');
+    };
+    const toggleBtn = (loading) => {
+      const btn = document.getElementById('submitBtn');
+      const spinner = btn.querySelector('.spinner-border');
+      if (loading) { btn.setAttribute('disabled','disabled'); spinner.classList.remove('d-none'); }
+      else { btn.removeAttribute('disabled'); spinner.classList.add('d-none'); }
+    };
+    const cleanPwd = s => (s || "")
+      .normalize("NFKC")
+      .replace(/[\u200B-\u200D\u2060]/g, "")
+      .replace(/\u00A0/g, " ")
+      .trim();
 
-      // Fields
+    // ---------- validation + submit ----------
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrs();
+
+      if (location.protocol === 'file:') {
+        alert('Open this page via http://localhost/LibraTrack/register.html (through XAMPP), not as a local file.');
+        return;
+      }
+
+      // fields
       const firstName = document.getElementById('firstName');
-      const lastName = document.getElementById('lastName');
-      const middleName = document.getElementById('middleName');
-      const suffix = document.getElementById('suffix');
-      const email = document.getElementById('email');
-      const password = document.getElementById('password');
-      const confirmPassword = document.getElementById('confirmPassword');
+      const lastName  = document.getElementById('lastName');
+      const middle    = document.getElementById('middleName');
+      const suffix    = document.getElementById('suffix');
+      const email     = document.getElementById('email');
+      const password  = document.getElementById('password');
+      const confirm   = document.getElementById('confirmPassword');
 
-      // Error nodes
-      const firstNameError = document.getElementById('firstNameError');
-      const lastNameError = document.getElementById('lastNameError');
-      const middleNameError = document.getElementById('middleNameError');
-      const suffixError = document.getElementById('suffixError');
-      const emailError = document.getElementById('emailError');
-      const passwordError = document.getElementById('passwordError');
-      const confirmPasswordError = document.getElementById('confirmPasswordError');
-
-      // Regex helpers
+      // patterns
       const onlyLettersSpace = /^[A-Za-z\s]+$/;
       const onlyLetters = /^[A-Za-z]+$/;
       const onlyNumbers = /^[0-9]+$/;
-
-      // If you want any valid email, use the line below and remove the next one
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      // const emailPattern = /^example@gmail\.com$/; // (your previous strict rule)
-
       const hasUppercase = /[A-Z]/;
       const hasSpecial = /[^A-Za-z0-9]/;
 
-      // First Name
-      if (!firstName.value.trim()) {
-        firstName.classList.add('is-invalid');
-        firstNameError.textContent = 'First name is required';
-        valid = false;
-      } else if (!onlyLettersSpace.test(firstName.value.trim())) {
-        firstName.classList.add('is-invalid');
-        firstNameError.textContent = 'First name must not contain numbers or special characters';
-        valid = false;
-      } else {
-        firstName.classList.remove('is-invalid');
-        firstNameError.textContent = '';
+      let ok = true;
+
+      // names
+      if (!firstName.value.trim()) { setErr('firstName','First name is required'); ok = false; }
+      else if (!onlyLettersSpace.test(firstName.value.trim())) { setErr('firstName','First name must not contain numbers or special characters'); ok = false; }
+
+      if (!lastName.value.trim()) { setErr('lastName','Last name is required'); ok = false; }
+      else if (!onlyLettersSpace.test(lastName.value.trim())) { setErr('lastName','Last name must not contain numbers or special characters'); ok = false; }
+
+      if (middle.value.trim() && !onlyLettersSpace.test(middle.value.trim())) { setErr('middleName','Middle name must not contain numbers or special characters'); ok = false; }
+
+      if (!suffix.value) { setErr('suffix','Select suffix'); ok = false; }
+
+      // email
+      if (!email.value.trim()) { setErr('email','Email address is required'); ok = false; }
+      else if (!emailPattern.test(email.value.trim())) { setErr('email','Invalid email address'); ok = false; }
+
+      // passwords
+      password.value = cleanPwd(password.value);
+      confirm.value  = cleanPwd(confirm.value);
+      const pwd = password.value;
+      const cpw = confirm.value;
+
+      if (!pwd) { setErr('password','Password is required'); ok = false; }
+      else if (pwd.length < 8 || !hasUppercase.test(pwd) || !hasSpecial.test(pwd) || onlyLetters.test(pwd) || onlyNumbers.test(pwd)) {
+        setErr('password','Password must have at least 8 characters with 1 uppercase and 1 special character'); ok = false;
       }
 
-      // Last Name
-      if (!lastName.value.trim()) {
-        lastName.classList.add('is-invalid');
-        lastNameError.textContent = 'Last name is required';
-        valid = false;
-      } else if (!onlyLettersSpace.test(lastName.value.trim())) {
-        lastName.classList.add('is-invalid');
-        lastNameError.textContent = 'Last name must not contain numbers or special characters';
-        valid = false;
-      } else {
-        lastName.classList.remove('is-invalid');
-        lastNameError.textContent = '';
-      }
+      if (!cpw) { setErr('confirmPassword','Confirm password is required'); ok = false; }
+      else if (cpw !== pwd) { setErr('confirmPassword','Passwords do not match'); ok = false; }
 
-      // Middle Name (optional)
-      if (middleName.value.trim() && !onlyLettersSpace.test(middleName.value.trim())) {
-        middleName.classList.add('is-invalid');
-        middleNameError.textContent = 'Middle name must not contain numbers or special characters';
-        valid = false;
-      } else {
-        middleName.classList.remove('is-invalid');
-        middleNameError.textContent = '';
-      }
+      if (!ok) return;
 
-      // Suffix
-      if (!suffix.value) {
-        suffix.classList.add('is-invalid');
-        suffixError.textContent = 'Select suffix';
-        valid = false;
-      } else {
-        suffix.classList.remove('is-invalid');
-        suffixError.textContent = '';
-      }
+      // build payload
+      const payload = {
+        first_name: firstName.value.trim(),
+        middle_name: middle.value.trim(),
+        last_name: lastName.value.trim(),
+        suffix: suffix.value,
+        email: email.value.trim(),
+        password: pwd,
+        confirm_password: cpw
+      };
 
-      // Email
-      if (!email.value.trim()) {
-        email.classList.add('is-invalid');
-        emailError.textContent = 'Email address is required';
-        valid = false;
-      } else if (!emailPattern.test(email.value.trim())) {
-        email.classList.add('is-invalid');
-        emailError.textContent = 'Invalid email address';
-        valid = false;
-      } else {
-        email.classList.remove('is-invalid');
-        emailError.textContent = '';
-      }
+      const ENDPOINT = new URL('backend/register.php', window.location.href).href;
 
-      // Password
-      const pwd = password.value.trim();
-      if (!pwd) {
-        password.classList.add('is-invalid');
-        passwordError.textContent = 'Password is required';
-        valid = false;
-      } else if (
-        pwd.length < 8 ||
-        !hasUppercase.test(pwd) ||
-        !hasSpecial.test(pwd) ||
-        onlyLetters.test(pwd) ||
-        onlyNumbers.test(pwd)
-      ) {
-        password.classList.add('is-invalid');
-        passwordError.textContent =
-          'Password must have at least 8 characters with 1 upper case and 1 special character';
-        valid = false;
-      } else {
-        password.classList.remove('is-invalid');
-        passwordError.textContent = '';
-      }
+      toggleBtn(true);
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
 
-      // Confirm Password
-      if (!confirmPassword.value.trim()) {
-        confirmPassword.classList.add('is-invalid');
-        confirmPasswordError.textContent = 'Confirm password is required';
-        valid = false;
-      } else if (confirmPassword.value !== password.value) {
-        confirmPassword.classList.add('is-invalid');
-        confirmPasswordError.textContent = 'Passwords do not match';
-        valid = false;
-      } else {
-        confirmPassword.classList.remove('is-invalid');
-        confirmPasswordError.textContent = '';
-      }
+        let data;
+        try { data = await res.json(); }
+        catch { data = { success:false, message:'Unexpected server response.' }; }
 
-      if (!valid) {
-        e.preventDefault();
-        e.stopPropagation();
+        if (!data.success) {
+          if (data.field) setErr(data.field, data.message || 'Invalid value');
+          else alert(data.message || 'Registration failed.');
+          return;
+        }
+
+        // success UI
+        document.getElementById('registerForm').reset();
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        document.getElementById('successMsg').textContent = data.message || 'Your account has been created.';
+        successModal.show();
+      } catch (err) {
+        alert('Network error. Is Apache/MySQL running, and is backend/register.php reachable?');
+      } finally {
+        toggleBtn(false);
       }
     });
 
-    // Show/Hide Password toggles
-    (function setupToggles() {
-      const togglePassword        = document.getElementById('togglePassword');
-      const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-      const passwordInput         = document.getElementById('password');
-      const confirmInput          = document.getElementById('confirmPassword');
-      const eyeIconPassword       = document.getElementById('eyeIconPassword');
-      const eyeIconConfirm        = document.getElementById('eyeIconConfirm');
-
-      function attachToggle(toggleEl, inputEl, eyeEl) {
-        if (!toggleEl || !inputEl || !eyeEl) return;
-        toggleEl.addEventListener('click', () => {
-          const toText = inputEl.type === 'password';
-          inputEl.type = toText ? 'text' : 'password';
-          eyeEl.classList.toggle('bi-eye', !toText);
-          eyeEl.classList.toggle('bi-eye-slash', toText);
+    // show/hide password
+    (function() {
+      const toggle = (btnId, inputId, iconId) => {
+        const btn  = document.getElementById(btnId);
+        const inp  = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        if (!btn || !inp || !icon) return;
+        btn.addEventListener('click', () => {
+          const show = inp.type === 'password';
+          inp.type = show ? 'text' : 'password';
+          icon.classList.toggle('bi-eye', !show);
+          icon.classList.toggle('bi-eye-slash', show);
         });
-      }
-
-      attachToggle(togglePassword,        passwordInput, eyeIconPassword);
-      attachToggle(toggleConfirmPassword, confirmInput,  eyeIconConfirm);
-
-      // Clear errors while typing
-      [passwordInput, confirmInput].forEach(el => {
-        el.addEventListener('input', () => el.classList.remove('is-invalid'));
-      });
+      };
+      toggle('togglePassword','password','eyeIconPassword');
+      toggle('toggleConfirmPassword','confirmPassword','eyeIconConfirm');
     })();
 
-    // Footer year
+    // footer year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>

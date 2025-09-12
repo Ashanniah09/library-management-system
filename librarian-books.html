@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>LibraTrack - Books</title>
+
+  <!-- Fonts / Icons / Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Shared sidebar + page styles -->
+  <link href="assets/css/sidebar.css" rel="stylesheet">
+  <link href="assets/css/librarian-books.css" rel="stylesheet">
+
+  <link rel="icon" href="assets/img/LibraTrack-logo.png">
+</head>
+
+<body class="sb-body">
+  <!-- Shared Sidebar (rendered by sidebar.js) -->
+  <div id="sidebar-root"></div>
+
+  <!-- ============= MAIN WRAPPER ============= -->
+  <div class="sb-wrapper">
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="page-head d-flex align-items-center justify-content-between flex-wrap gap-3">
+        <div class="d-flex align-items-center gap-2">
+          <!-- Hamburger toggler -->
+          <button id="sidebarToggle" class="btn btn-link text-dark p-0 me-2" aria-label="Toggle sidebar">
+            <i class="bi bi-list fs-4"></i>
+          </button>
+          <div class="page-title">Books</div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2" style="min-width:320px;max-width:520px;flex:1">
+          <div class="search-wrap flex-grow-1">
+            <i class="bi bi-search"></i>
+            <input id="bookSearch" type="search" placeholder="Search by title, author, ISBN…">
+          </div>
+          <button id="btnAddBook" class="add-btn" type="button" title="Add book" data-bs-toggle="modal" data-bs-target="#bookModal">
+            <i class="bi bi-plus-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <main class="container-fluid py-3">
+      <!-- Grid container (JS will populate) -->
+      <div id="booksGrid" class="grid" aria-live="polite"></div>
+
+      <!-- Empty state -->
+      <div id="emptyState" class="empty d-none">
+        <i class="bi bi-journal-richtext fs-2 d-block mb-2"></i>
+        No books yet. Click the blue <b>＋</b> to add your first book.
+      </div>
+    </main>
+  </div>
+
+  <!-- ============= TEMPLATES (for JS rendering) ============= -->
+  <template id="bookCardTpl">
+    <article class="book">
+      <img class="cover" alt="">
+      <div class="meta">
+        <div class="title text-truncate"></div>
+        <div class="sub text-truncate"></div>
+        <div class="sub text-truncate small"></div>
+      </div>
+      <div class="actions">
+        <button class="icon-btn" data-action="view" title="Details"><i class="bi bi-info-circle"></i></button>
+        <button class="icon-btn" data-action="edit" title="Edit"><i class="bi bi-pencil-square"></i></button>
+        <button class="icon-btn danger" data-action="delete" title="Delete"><i class="bi bi-trash3"></i></button>
+      </div>
+    </article>
+  </template>
+
+  <!-- ============= ADD / EDIT MODAL ============= -->
+  <div class="modal fade" id="bookModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <form id="bookForm" class="modal-content" method="post" enctype="multipart/form-data" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookModalTitle">Add Book</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-3">
+            <!-- Cover -->
+            <div class="col-12 col-md-4">
+              <label class="form-label fw-medium">Cover</label>
+              <div id="dropArea" class="img-drop" role="button" tabindex="0">
+                <!-- IMPORTANT: name="cover" so PHP receives the file -->
+                <input id="coverInput" name="cover" type="file" accept="image/*" class="d-none">
+                <img id="coverPreview" alt="" class="d-none">
+                <div id="dropHint" class="text-center text-muted">
+                  <i class="bi bi-image fs-1 d-block mb-2"></i>
+                  Click to choose
+                </div>
+              </div>
+              <div class="d-flex gap-2 mt-2">
+                <button type="button" id="btnChangeImage" class="btn btn-sm btn-outline-primary flex-grow-1">Change image</button>
+                <button type="button" id="btnRemoveImage" class="btn btn-sm btn-outline-secondary flex-grow-1">Remove</button>
+              </div>
+            </div>
+
+            <!-- Fields -->
+            <div class="col-12 col-md-8">
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="title" class="form-label">Book Title <span class="text-danger">*</span></label>
+                  <input id="title" name="title" type="text" class="form-control" required>
+                  <div class="invalid-feedback">Title is required.</div>
+                </div>
+
+                <div class="col-12">
+                  <label for="isbn" class="form-label">ISBN <span class="text-danger">*</span></label>
+                  <input id="isbn" name="isbn" type="text" class="form-control" required>
+                  <div class="invalid-feedback">ISBN is required.</div>
+                </div>
+
+                <div class="col-12">
+                  <label for="author" class="form-label">Author <span class="text-danger">*</span></label>
+                  <input id="author" name="author" type="text" class="form-control" required>
+                  <div class="invalid-feedback">Author is required.</div>
+                </div>
+
+                <div class="col-8">
+                  <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
+                  <select id="category" name="category" class="form-select" required>
+                    <option value="" selected disabled>Select category</option>
+                    <option>Action and Adventure</option>
+                    <option>Biography</option>
+                    <option>Children's Books</option>
+                    <option>Computer Science</option>
+                    <option>Fantasy</option>
+                    <option>History</option>
+                    <option>Mystery</option>
+                    <option>Romance</option>
+                    <option>Science</option>
+                  </select>
+                  <div class="invalid-feedback">Category is required.</div>
+                </div>
+
+                <div class="col-4">
+                  <label for="quantity" class="form-label">Quantity <span class="text-danger">*</span></label>
+                  <input id="quantity" name="quantity" type="number" min="0" step="1" class="form-control" required>
+                  <div class="invalid-feedback">Quantity is required.</div>
+                </div>
+
+                <div class="col-12">
+                  <label for="publisher" class="form-label">Publisher <span class="text-danger">*</span></label>
+                  <input id="publisher" name="publisher" type="text" class="form-control" required>
+                  <div class="invalid-feedback">Publisher is required.</div>
+                </div>
+
+                <div class="col-12">
+                  <label for="date_published" class="form-label">Date Published</label>
+                  <!-- IMPORTANT: name="date_published" to match PHP -->
+                  <input id="date_published" name="date_published" type="date" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hidden id for future edit -->
+          <input type="hidden" id="bookId">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Back</button>
+          <button id="btnSaveBook" type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============= VIEW DETAILS OFFCANVAS ============= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="bookDetails" aria-labelledby="bookDetailsLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="bookDetailsLabel">Book Details</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="d-flex gap-3">
+        <img id="detailsCover" src="" alt="" style="width:160px;aspect-ratio:3/4;object-fit:cover;border-radius:12px;background:#e5e7eb">
+        <div class="flex-grow-1">
+          <h5 id="detailsTitle" class="mb-1"></h5>
+          <div class="text-muted small mb-3">
+            <span id="detailsAuthor"></span> · <span id="detailsIsbn"></span>
+          </div>
+
+          <dl class="row mb-0">
+            <dt class="col-4 col-sm-3">Category</dt><dd id="detailsCategory" class="col-8 col-sm-9"></dd>
+            <dt class="col-4 col-sm-3">Publisher</dt><dd id="detailsPublisher" class="col-8 col-sm-9"></dd>
+            <dt class="col-4 col-sm-3">Published</dt><dd id="detailsPublishedAt" class="col-8 col-sm-9"></dd>
+            <dt class="col-4 col-sm-3">Quantity</dt><dd id="detailsQuantity" class="col-8 col-sm-9"></dd>
+            <dt class="col-4 col-sm-3">Status</dt>
+            <dd class="col-8 col-sm-9">
+              <span id="detailsStatus" class="pill">Available</span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= SCRIPTS ============= -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Shared sidebar (build-free) -->
+  <script src="assets/js/sidebar.js"></script>
+  <script>
+    // Mount shared sidebar and highlight "Books"
+    renderSidebar('books');
+    document.getElementById('sidebarToggle')?.addEventListener('click', toggleSidebar);
+  </script>
+
+  <!-- Page logic: now using real API -->
+  <script>
+    (function () {
+      const API_BASE = "/LibraTrack/api"; // adjust if your folder name differs
+
+      // ---------- State ----------
+      let books = [];
+
+      // ---------- Elements ----------
+      const grid = document.getElementById('booksGrid');
+      const empty = document.getElementById('emptyState');
+      const tpl = document.getElementById('bookCardTpl');
+      const search = document.getElementById('bookSearch');
+
+      const bookModalEl = document.getElementById('bookModal');
+      const bookModal = new bootstrap.Modal(bookModalEl);
+      const form = document.getElementById('bookForm');
+      const modalTitle = document.getElementById('bookModalTitle');
+      const hiddenId = document.getElementById('bookId');
+
+      const input = {
+        title: document.getElementById('title'),
+        isbn: document.getElementById('isbn'),
+        author: document.getElementById('author'),
+        category: document.getElementById('category'),
+        quantity: document.getElementById('quantity'),
+        publisher: document.getElementById('publisher'),
+        date_published: document.getElementById('date_published'),
+      };
+
+      // cover upload widgets
+      const dropArea = document.getElementById('dropArea');
+      const coverInput = document.getElementById('coverInput');
+      const coverPreview = document.getElementById('coverPreview');
+      const dropHint = document.getElementById('dropHint');
+      document.getElementById('btnChangeImage').onclick = () => coverInput.click();
+      document.getElementById('btnRemoveImage').onclick = removePreview;
+      dropArea.onclick = () => coverInput.click();
+      dropArea.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); coverInput.click(); } };
+      coverInput.onchange = handleCover;
+
+      // Details offcanvas
+      const detailsOff = new bootstrap.Offcanvas('#bookDetails');
+      const D = {
+        cover: document.getElementById('detailsCover'),
+        title: document.getElementById('detailsTitle'),
+        author: document.getElementById('detailsAuthor'),
+        isbn: document.getElementById('detailsIsbn'),
+        cat: document.getElementById('detailsCategory'),
+        pub: document.getElementById('detailsPublisher'),
+        date: document.getElementById('detailsPublishedAt'),
+        qty: document.getElementById('detailsQuantity'),
+        status: document.getElementById('detailsStatus'),
+      };
+
+      // ---------- API ----------
+      async function loadBooks() {
+        grid.innerHTML = '<div class="text-center text-muted py-4">Loading…</div>';
+        try {
+          const res = await fetch(`${API_BASE}/list_books.php`, { cache: 'no-store' });
+          const json = await res.json();
+          if (!json.ok) throw new Error(json.error || 'Failed to load');
+          books = json.data || [];
+          render(tokenSearch(search.value));
+        } catch (e) {
+          grid.innerHTML = `<div class="text-center text-danger py-4">Error: ${e.message}</div>`;
+        }
+      }
+
+      async function addBook(formEl) {
+        const btn = document.getElementById('btnSaveBook');
+        btn.disabled = true; btn.textContent = 'Saving…';
+        try {
+          const fd = new FormData(formEl); // includes file if selected
+          const res = await fetch(`${API_BASE}/add_book.php`, { method: 'POST', body: fd });
+          const json = await res.json();
+          if (!json.ok) throw new Error(json.error || 'Save failed');
+          // refresh
+          await loadBooks();
+          // reset + close
+          formEl.reset();
+          removePreview();
+          bookModal.hide();
+          alert('Book saved!');
+        } catch (err) {
+          alert('Error: ' + err.message);
+        } finally {
+          btn.disabled = false; btn.textContent = 'Save';
+        }
+      }
+
+      // ---------- Render ----------
+      function render(list = books) {
+        grid.innerHTML = '';
+        if (!list.length) { empty.classList.remove('d-none'); return; }
+        empty.classList.add('d-none');
+
+        list.forEach(b => {
+          const card = tpl.content.cloneNode(true);
+          const el = card.querySelector('.book');
+
+          const img = card.querySelector('.cover');
+          img.src = b.coverUrl || 'assets/img/sample/placeholder-cover.png';
+          img.alt = b.title;
+
+          card.querySelector('.title').textContent = b.title;
+          card.querySelector('.sub:nth-of-type(1)').textContent = b.author;
+          card.querySelector('.sub:nth-of-type(2)').textContent = b.isbn;
+
+          el.querySelector('[data-action="view"]').onclick = () => openDetails(b);
+          el.querySelector('[data-action="edit"]').onclick = () => alert('Edit coming soon');
+          el.querySelector('[data-action="delete"]').onclick = () => alert('Delete coming soon');
+
+          grid.appendChild(card);
+        });
+      }
+
+      // ---------- Search ----------
+      function tokenSearch(text) {
+        const q = text.trim().toLowerCase();
+        if (!q) return books;
+
+        const tokens = q.split(/\s+/);
+        let filtered = books;
+
+        tokens.forEach(t => {
+          if (t.startsWith('author:')) {
+            const val = t.replace('author:', '').trim();
+            filtered = filtered.filter(b => (b.author || '').toLowerCase().includes(val));
+          } else if (t.startsWith('category:')) {
+            const val = t.replace('category:', '').trim();
+            filtered = filtered.filter(b => (b.category || '').toLowerCase().includes(val));
+          } else if (t.startsWith('isbn:')) {
+            const val = t.replace('isbn:', '').trim();
+            filtered = filtered.filter(b => (b.isbn || '').toLowerCase().includes(val));
+          } else {
+            filtered = filtered.filter(b =>
+              (`${b.title} ${b.author} ${b.isbn}`).toLowerCase().includes(t)
+            );
+          }
+        });
+
+        return filtered;
+      }
+      search.addEventListener('input', () => render(tokenSearch(search.value)));
+
+      // ---------- Add ----------
+      document.getElementById('btnAddBook').addEventListener('click', () => {
+        modalTitle.textContent = 'Add Book';
+        form.reset();
+        hiddenId.value = '';
+        removePreview();
+        form.classList.remove('was-validated');
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        form.classList.add('was-validated');
+        if (!form.checkValidity()) return;
+        addBook(form);
+      });
+
+      // ---------- Details ----------
+      function openDetails(b) {
+        D.cover.src = b.coverUrl || 'assets/img/sample/placeholder-cover.png';
+        D.title.textContent = b.title || '—';
+        D.author.textContent = b.author || '—';
+        D.isbn.textContent = b.isbn || '—';
+        D.cat.textContent = b.category || '—';
+        D.pub.textContent = b.publisher || '—';
+        D.date.textContent = b.date_published || '—';
+        D.qty.textContent = String(b.quantity ?? 0);
+        const available = (b.quantity ?? 0) > 0;
+        D.status.textContent = available ? 'Available' : 'Out of stock';
+        D.status.className = 'pill ' + (available ? '' : 'bg-danger text-white');
+        detailsOff.show();
+      }
+
+      // ---------- Cover helpers ----------
+      function handleCover() {
+        const file = coverInput.files && coverInput.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => showPreview(reader.result);
+        reader.readAsDataURL(file);
+      }
+      function showPreview(src) {
+        coverPreview.src = src;
+        coverPreview.classList.remove('d-none');
+        dropHint.classList.add('d-none');
+      }
+      function removePreview() {
+        coverPreview.src = '';
+        coverPreview.classList.add('d-none');
+        dropHint.classList.remove('d-none');
+        coverInput.value = '';
+      }
+
+      // ---------- Init ----------
+      loadBooks();
+    })();
+  </script>
+</body>
+</html>
